@@ -1,0 +1,11 @@
+version: '3'
+services:
+  api:
+    build:
+      context: . 
+      dockerfile: dockerfile
+    command: uvicorn src.main:api --reload --host 0.0.0.0
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/workspace:rw
