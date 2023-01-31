@@ -19,6 +19,7 @@ class PatientDatabaseModel(BaseDatabaseModel):
     id_number = Column(Float(20), primary_key=True)
     insurance = Column(String(30))
     phone_number = Column(String(30))
+    events_id = Column(Float)
 
     tickets = relationship("TicketsDatabaseModel")
 
@@ -39,6 +40,8 @@ class EventsDatabaseModel(BaseDatabaseModel):
     id=Column(Integer, primary_key=True)
     username = Column(String(100), ForeignKey("UserDatabaseModel.username"))
     menu_item_name = Column(String(100), ForeignKey("MenuItemDatabaseModel.name"))
+
+    patient = relationship("PatientDatabaseModel")
 
 # create all tables in database
 BaseDatabaseModel.metadata.create_all(engine)
